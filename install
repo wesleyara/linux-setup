@@ -1,0 +1,22 @@
+#! /bin/bash
+
+# Add executable permission to the script
+chmod +x install &&
+chmod +x pos-zsh
+
+# Install the required packages
+sudo apt update -y &&
+sudo apt upgrade -y &&
+sudo apt install git zsh curl -y &&
+
+# Install Oh My Zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" &&
+
+# Add pos-zsh script to restart using crontab
+(crontab -l 2>/dev/null; echo "@reboot $HOME/linux-setup/pos-zsh") | crontab -
+
+# Change the default shell to zsh
+chsh -s $(which zsh) &&
+
+# Restart the system
+sudo reboot

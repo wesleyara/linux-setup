@@ -1,0 +1,6 @@
+alias aliasconfig="nano ~/.zshrc_aliases"
+
+alias documents="cd ~/Documents"
+alias downloads="cd ~/Downloads"
+
+alias zshrc="nano ~/.zshrc"

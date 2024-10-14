@@ -1,0 +1,51 @@
+#! /bin/bash
+
+# install the zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions &&
+
+# install the zsh-syntax-highlighting
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting &&
+
+# add the nvm
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash &&
+
+# copy the zshrc file to the home directory
+cp $HOME/linux-setup/template/zshrc_template $HOME/.zshrc &&
+
+# copy the zshrc_aliases file to the home directory
+cp $HOME/linux-setup/template/zshrc_aliases_template $HOME/.zshrc_aliases &&
+
+# reload the zshrc file
+source $HOME/.zshrc
+
+# set the default node version
+nvm install 20 &&
+
+# set the default node version
+nvm use 20 &&
+
+# reload the zshrc file
+source $HOME/.zshrc &&
+
+# install yarn and pnpm
+npm install -g yarn pnpm &&
+
+# install the nest cli
+npm i -g @nestjs/cli &&
+
+# install docker
+sudo apt install docker.io -y &&
+
+# add docker group
+sudo groupadd docker &&
+sudo usermod -aG docker $USER &&
+
+# install docker-compose
+sudo apt-get update
+sudo apt-get install docker-compose-plugin
+
+# remove the script from the crontab
+(crontab -l | grep -v "$HOME/linux-setup/pos-zsh") | crontab -
+
+# restart the system
+sudo reboot
