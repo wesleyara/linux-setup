@@ -4,7 +4,16 @@
 
 ```bash
 git clone https://github.com/wesleyara/linux-setup $HOME/linux-setup &&
+
 cd $HOME/linux-setup &&
-cmod +x install &&
-./install &&
+
+chmod +x install
+```
+
+## Running the script after reboot
+
+```bash
+chmod +x pos-zsh &&
+
+./pos-zsh
 ```
